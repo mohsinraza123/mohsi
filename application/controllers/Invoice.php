@@ -46,8 +46,6 @@ class Invoice extends CI_Controller {
 
 	public function saveTransEntry(){
 		$entry = $this->input->post('TransEntry');
-		$entry = http_build_query($entry);
-		echo $entry;
 
 		$curl = curl_init();
 
@@ -67,36 +65,7 @@ class Invoice extends CI_Controller {
 		  ),
 		));
 
-		// echo $entry;
-		// curl_close($curl);
-		// echo $response;
-
-		
-		// $entry = http_build_query(json_decode($entry));
-		// // var_dump($entry);
-		// $curl = curl_init();
-        
-  //       curl_setopt_array($curl, array(
-  //         CURLOPT_URL => "http://vendtapwebapp.azurewebsites.net/api/transentries/posttransentry",
-  //         CURLOPT_RETURNTRANSFER => true,
-  //         CURLOPT_ENCODING => "",
-  //         CURLOPT_MAXREDIRS => 10,
-  //         CURLOPT_TIMEOUT => 0,
-  //         CURLOPT_FOLLOWLOCATION => true,
-  //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  //         CURLOPT_CUSTOMREQUEST => "POST",
-  //         // CURLOPT_POSTFIELDS => "TransEntry=['ERF':'ANC']",
-  //         // CURLOPT_POSTFIELDS => "TransEntry="."'".$entry."'",
-  //         CURLOPT_POSTFIELDS => "TransEntry=".$entry,
-  //         CURLOPT_HTTPHEADER => array(
-  //           "APIKey:".APIKey,
-  //           "Content-Type: application/json"
-  //         ),
-  //       ));
-        
-  //       $response = curl_exec($curl);
-  //       curl_close($curl);
-  //       var_dump($response);
-        echo "Done";
+		curl_close($curl);
+		echo $response;
 	}
 }
