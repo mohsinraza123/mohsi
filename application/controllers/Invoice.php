@@ -13,6 +13,14 @@ class Invoice extends CI_Controller {
 	{
 		$this->load->view('generate-invoice');
 	}
+	public function invoices($limit = 50, $offset = 0){
+		$data['limit'] = $limit;
+		$data['offset'] = $offset;
+		$this->load->view("invoices-list", $data);
+	}
+	public function getInvoices($limit, $offset){
+		
+	}
 	public function addPayment(){
 	    $this->load->view('add-payment');
 	}
@@ -58,7 +66,7 @@ class Invoice extends CI_Controller {
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "POST",
-		  CURLOPT_POSTFIELDS =>$entry,
+		  CURLOPT_POSTFIELDS =>"{data:".$entry."}",
 		  CURLOPT_HTTPHEADER => array(
 		    "APIKey: ".APIKey,
 		    "Content-Type: application/json"
@@ -66,6 +74,6 @@ class Invoice extends CI_Controller {
 		));
 
 		curl_close($curl);
-		echo $response;
+		var_dump( $response );
 	}
 }
